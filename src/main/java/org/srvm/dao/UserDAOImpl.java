@@ -23,11 +23,11 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long>
 
     @Override
     public List<?> getUserMatches(String interests) {
-        String hql = "select a from CommonAccount a where a.interests = :int";
+        String hql = "select a from CommonAccount a where a.interests = :interests";
 
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
-        Query query = em.createQuery(hql).setParameter("int", "dogs");
+        Query query = em.createQuery(hql).setParameter("interests", interests);
         List<?> resultList = query.getResultList();
         em.getTransaction().commit();
         em.close();
